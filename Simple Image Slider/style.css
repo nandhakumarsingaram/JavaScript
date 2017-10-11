@@ -1,0 +1,31 @@
+body{
+	background-color: #ecf0f1;
+}
+#heading{
+	font-family: sans-serif;
+	font-style: italic;
+	position: relative;
+	left: 41%;
+}
+#wall-image{
+	position: relative;
+	left:25%;
+	width: 50%;
+	height: 400px;
+	margin: 0%;
+	padding: 2%;
+}
+#icon-content{
+	position: relative;
+	margin: auto;
+    width: 50%;
+    left: 25%;
+    top: 5%;
+}
+.icon{
+	width: 2%;
+	height: 2%;
+}
+.icon:hover{
+	cursor: pointer;
+}
