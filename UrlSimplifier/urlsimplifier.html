@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>URL Simplifier</title>
+<meta charset="utf-8"/>
+<script src="https://apis.google.com/js/client.js" type="text/javascript"> </script>
+<style>
+body{
+	background-color: #ecf0f1;
+}
+div{
+	margin: 10px;
+	color: #7f8c8d;
+	padding-top: 30px;
+	justify-content: center;
+	text-align: center;
+}
+h1{
+	font-family: sans-serif;
+	font-weight: 20px;
+	text-align: center;
+}
+button{
+	background-color: #7f8c8d;
+	color: white;
+	height: 35px;
+	width: 100px;
+	padding: 5px;
+	border: 0px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+input{
+	width: auto;
+	height: 20px;
+	color: #7f8c8d;
+	background-color: #ecf0f1;
+	padding: 5px; 
+	//border-style: solid;
+	border-left: 0px solid grey;
+	border-right: 0px solid grey;
+	border-top: 0px solid grey;
+	border-bottom-style: solid;
+}
+input:focus{
+	box-shadow: 2px 2px 2px 2px #bdc3c7;
+}
+
+img{
+	width: 1.2%;
+}
+
+</style>
+<script type="text/javascript">
+
+function UrlMax() {
+var Url = document.getElementById("ssurl").value;
+var request = gapi.client.urlshortener.url.get({
+        'shortUrl': Url
+   });
+request.execute(function(response) {
+
+if (response.id != null) {
+str = "";
+str +=  response.longUrl;
+//alert(str);
+document.getElementById("murl").value = str;
+}
+else {
+alert("Error: creating short url \n" + response.error);
+}
+});
+}
+
+function UrlShort() {
+var Url = document.getElementById("lurl").value;
+var request = gapi.client.urlshortener.url.insert({
+'resource': {
+'longUrl': Url
+}
+});
+request.execute(function(response) {
+
+if (response.id != null) {
+str = "";
+str +=  response.id;
+//alert(str);
+document.getElementById("surl").value = str;
+}
+else {
+alert("Error: creating short url \n" + response.error);
+}
+});
+}
+
+function cpyfun(opt) {
+	var copyText;
+	if(opt==1)
+   		copyText = document.getElementById("surl");
+  	else if(opt==2)
+  		copyText = document.getElementById("murl");
+  copyText.select();
+  document.execCommand("Copy");
+  //alert("Copied the text: " + copyText.value);
+}
+
+function load() {
+gapi.client.setApiKey(' AIzaSyBv14A6g1mAUrFgzjOdBfrGcw_AfQmFXcI ');
+gapi.client.load('urlshortener', 'v1', function() { document.getElementById("surl").innerHTML = ""; });
+}
+window.onload = load;
+</script>
+</head>
+<body>
+<div id="content">
+	<h1>URL Simplifier</h1><br>
+	<input type="text" id="lurl" placeholder="Large URL" required />
+	<button id="simplify_button" onclick="UrlShort();" >Simplify it</button>
+	<input type="text" id="surl" placeholder="simplified url" readonly="true" />
+	<img src="copy.ico" alt="copy" onclick="cpyfun(1)" />
+</div>
+<div id="content">
+	<input type="text" id="ssurl" placeholder="Short URL" required />
+	<button id="maxify_button" onclick="UrlMax();" >Maxify it</button>
+	<input type="text" id="murl" placeholder="Maxified url" readonly="true" />
+	<img src="copy.ico" alt="copy" onclick="cpyfun(2)" />
+</div>
+</body>
+</html>
