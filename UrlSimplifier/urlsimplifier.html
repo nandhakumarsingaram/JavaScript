@@ -49,6 +49,9 @@ input:focus{
 img{
 	width: 1.2%;
 }
+img:hover{
+	cursor: pointer;
+}
 
 </style>
 <script type="text/javascript">
@@ -103,6 +106,9 @@ function cpyfun(opt) {
   document.execCommand("Copy");
   //alert("Copied the text: " + copyText.value);
 }
+function help(){
+	alert("We just help you to simplify the long url and maximize the simplified url....!")
+}
 
 function load() {
 gapi.client.setApiKey(' AIzaSyBv14A6g1mAUrFgzjOdBfrGcw_AfQmFXcI ');
@@ -124,6 +130,9 @@ window.onload = load;
 	<button id="maxify_button" onclick="UrlMax();" >Maxify it</button>
 	<input type="text" id="murl" placeholder="Maxified url" readonly="true" />
 	<img src="copy.ico" alt="copy" onclick="cpyfun(2)" />
+</div>
+<div>
+	<img src="help.ico" alt="help" title="help" onmouseover="this.title='We just help you to minimize and maximize the url....!'" onmouseout="this.title='help'" onclick="help()" />
 </div>
 </body>
 </html>
