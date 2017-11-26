@@ -1,3 +1,3 @@
-we just simplify and maximize your url
+This page just help you to simplify the long url and maximize the simplified url....!
 
 Try this -> https://urlsimplifier.000webhostapp.com/ 
